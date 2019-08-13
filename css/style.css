@@ -1,4 +1,21 @@
 body > header > h1 {
   background-color: salmon;
   padding: 20px;
-  color:  black;}
+  color:  black;
+}
+
+body > header > nav > ul > li {
+  box-align: left;
+  background-color: rgb(75, 8, 8);
+  color: white;
+  display: inline-block;
+  list-style-type: none;
+  margin: auto;
+  padding: 10px;
+}
+
+body > header > nav > ul > li > a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
