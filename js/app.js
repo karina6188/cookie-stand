@@ -1,8 +1,10 @@
 'use strict';
 
 var hours = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: '];
+var sumTotal = ['Total: '];
 
 var locations = [];
+var total = [];
 
 // ======================================================================
 // Store: 1st and Pike
@@ -129,6 +131,18 @@ function render() {
       // list created element of 'ul', so we appendChild to ul first (ul > li).
       list.appendChild(li);
     }
+
+    var sum = 0;
+    for (var s = 0; s < locations[i].TotalSales.length; s++) {
+      sum += parseInt(locations[i].TotalSales[s]);
+      total.push(sum);
+    }
+
+    var addTotal = document.createElement('li');
+    var TotalSum = sumTotal + sum;
+    addTotal.textContent = TotalSum;
+    list.appendChild(addTotal);
+
     // Then we append what we just appended ul to section, so section.append list (section > ul > li).
     section.appendChild(list);
   }
@@ -150,4 +164,3 @@ function initialize () {
 
 initialize();
 render();
-
