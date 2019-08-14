@@ -4,14 +4,17 @@ var hours = ['6am ', '7am ', '8am ', '9am ', '10am ', '11am ', '12pm ', '1pm ', 
 
 var sumTotal = ['Total '];
 
-// All values in each Object.
+// All properties and values in each Object.
 var allStores = [];
+
+// All store names.
 var locations = [];
 
 // Sum of sales of all hours for each store.
 var total = [];
 
-console.log(total);
+// Sum of hourly sales for all stores.
+var endSum = [];
 
 // ======================================================================
 // Constructor Object : Store
@@ -47,7 +50,7 @@ var Alki = new Store('Alki', 2, 16, 4.6);
 // ======================================================================
 // Use the same route of Section > table then create route of > table > then to tr > td. Fill in cells with array of Sales for each store.
 
-function fillCells () {
+function fillHead() {
 
   var table = document.getElementById('table-locations');
 
@@ -64,40 +67,90 @@ function fillCells () {
     tr.appendChild(th);
   }
 
+  var th2 = document.createElement('th');
+  th2.textContent = sumTotal;
+
+  tr.appendChild(th2);
+
   thead.appendChild(tr);
   table.appendChild(thead);
+}
 
+function fillCells() {
 
-  // Create table data with store location in first column then sales data in following columns.
+  // Create table data with store location in first column.
   for (var r = 0; r < allStores.length; r++) {
 
-    var tbody = document.createElement('tbody');
+    var tbody = document.getElementById('table-body');
     var tr = document.createElement('tr');
     var td = document.createElement('td');
     td.textContent = allStores[r].name;
 
     tr.appendChild(td);
     tbody.appendChild(tr);
-    table.appendChild(tbody);
 
+
+    // Create sales data in following columns.
     for (var d = 0 ; d < allStores[r].TotalSales.length; d++) {
 
       var td2 = document.createElement('td');
       td2.textContent = allStores[r].TotalSales[d];
-
-      var sum = 0;
-      sum += parseInt(allStores[r].TotalSales[d]);
-      total.push(sum);
 
       var td3 = document.createElement('td');
       td3.textContent = total[r];
 
       tr.appendChild(td2);
       tbody.appendChild(tr);
-      table.appendChild(tbody);
     }
+
+
+    // Add sum of each store to the end of the column.
+    var sum = 0;
+    for (var a = 0; a < allStores[r].TotalSales.length; a++) {
+      sum += parseInt(allStores[r].TotalSales[a]);
+    }
+
+    total.push(sum);
+
+    var sum1 = document.createElement('td');
+    sum1.textContent = total[r];
+
+    tr.appendChild(sum1);
+    tbody.appendChild(tr);
   }
 }
+
+function fillEndSum() {
+
+  // Grab all the hourly sales from each store, and sum all the stores' hourly sales hour by hour.
+  var tbody = document.getElementById('table-body');
+  var endTr = document.createElement('tr');
+
+  var emptySpace = document.createElement('td');
+  emptySpace.textContent = 'Total Sales per Hour';
+  endTr.appendChild(emptySpace);
+  tbody.appendChild(endTr);
+
+  for (var e = 0; e < hours.length-1; e++) {
+    var hourSales = document.createElement('td');
+
+    var sumEnd = 0;
+    for (var m = 0; m < allStores.length; m++) {
+      sumEnd += parseInt(allStores[m].TotalSales[e]);
+    }
+
+    endSum.push(sumEnd);
+
+    hourSales.textContent = endSum[e];
+    endTr.appendChild(hourSales);
+    tbody.appendChild(endTr);
+  }
+
+
+  // Add sum of hourly sales for all the stores to last row of the table.
+  endSum.unshift(' ');
+}
+
 
 function initialize () {
   PikeAnd1st.generateSales();
@@ -114,4 +167,6 @@ function initialize () {
 }
 
 initialize();
+fillHead();
 fillCells();
+fillEndSum();
