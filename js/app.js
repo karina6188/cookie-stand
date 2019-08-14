@@ -1,150 +1,101 @@
 'use strict';
 
-var hours = ['6am: ', '7am: ', '8am: ', '9am: ', '10am: ', '11am: ', '12pm: ', '1pm: ', '2pm: ', '3pm: ', '4pm: ', '5pm: ', '6pm: ', '7pm: ', '8pm: '];
+var hours = ['6am ', '7am ', '8am ', '9am ', '10am ', '11am ', '12pm ', '1pm ', '2pm ', '3pm ', '4pm ', '5pm ', '6pm ', '7pm ', '8pm '];
+
 var sumTotal = ['Total: '];
 
+// All values in each Object.
+var allStores = [];
 var locations = [];
+
+// Sum of sales of all hours for each store.
 var total = [];
 
-// ======================================================================
-// Store: 1st and Pike
+console.log(total);
 
-var PikeAnd1st = {
-  name: '1st and Pike',
-  minCustomer: 23,
-  maxCustomer: 65,
-  aveSale: 6.3,
-  TotalSales: [],
-  randomCust: function (minCustomer, maxCustomer) {
-    return Math.floor(Math.random() * (maxCustomer-minCustomer)) + minCustomer + 1;
-  },
-  generateSales: function() {
+// ======================================================================
+// Constructor Object : Store
+
+
+function Store(name, minCustomer, maxCustomer, aveSale) {
+  this.name = name;
+  this.minCustomer = minCustomer;
+  this.maxCustomer = maxCustomer;
+  this.aveSale = aveSale;
+  this.TotalSales = [];
+  this.randomCust = function(minCustomer, maxCustomer) {
+    return Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer + 1;
+  };
+  this.generateSales = function() {
     for (var i = 1; i <= 15; i ++) {
       var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSale);
       this.TotalSales.push(simuSales);
     }
-  },
-};
+  };
+  allStores.push(this);
+}
+
+
+var PikeAnd1st = new Store('1st and Pike', 23, 65, 6.3);
+var SeaTac = new Store('SeaTac Airport', 3, 24, 1.2);
+var SeaCenter = new Store('Seattle Center', 11, 387, 3.7);
+var CapitolHill = new Store('Capitol Hill', 20, 38, 2.3);
+var Alki = new Store('Alki', 2, 16, 4.6);
+
+
 
 // ======================================================================
-// Store: SeaTac Airport
+// Use the same route of Section > table then create route of > table > then to tr > td. Fill in cells with array of Sales for each store.
 
-var SeaTac = {
-  name: 'SeaTac Airport',
-  minCustomer: 3,
-  maxCustomer: 24,
-  aveSale: 1.2,
-  TotalSales: [],
-  randomCust: function (minCustomer, maxCustomer) {
-    return Math.floor(Math.random() * (maxCustomer-minCustomer)) + minCustomer + 1;
-  },
-  generateSales: function() {
-    for (var i = 1; i <= 15; i ++) {
-      var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSale);
-      this.TotalSales.push(simuSales);
-    }
-  },
-};
+function fillCells () {
 
-// ======================================================================
-// Store: Seattle Center
+  var table = document.getElementById('table-locations');
 
-var SeaCenter = {
-  name: 'Seattle Center',
-  minCustomer: 11,
-  maxCustomer: 38,
-  aveSale: 3.7,
-  TotalSales: [],
-  randomCust: function (minCustomer, maxCustomer) {
-    return Math.floor(Math.random() * (maxCustomer-minCustomer)) + minCustomer + 1;
-  },
-  generateSales: function() {
-    for (var i = 1; i <= 15; i ++) {
-      var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSale);
-      this.TotalSales.push(simuSales);
-    }
-  },
-};
+  // Create elements going down from table > thead > tr > th then use for loop to put hours in table head.
 
-// ======================================================================
-// Store: Capitol Hill
+  var thead = document.createElement('thead');
+  var tr = document.createElement('tr');
 
-var CapitolHill = {
-  name: 'Capitol Hill',
-  minCustomer: 20,
-  maxCustomer: 38,
-  aveSale: 2.3,
-  TotalSales: [],
-  randomCust: function (minCustomer, maxCustomer) {
-    return Math.floor(Math.random() * (maxCustomer-minCustomer)) + minCustomer + 1;
-  },
-  generateSales: function() {
-    for (var i = 1; i <= 15; i ++) {
-      var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSale);
-      this.TotalSales.push(simuSales);
-    }
-  },
-};
+  hours.unshift(' ');
 
-// ======================================================================
-// Store: Alki
+  for (var h = 0 ; h < hours.length; h++) {
+    var th = document.createElement('th');
+    th.textContent = hours[h];
+    tr.appendChild(th);
+  }
 
-var Alki = {
-  name: 'Alki',
-  minCustomer: 2,
-  maxCustomer: 16,
-  aveSale: 4.6,
-  TotalSales: [],
-  randomCust: function (minCustomer, maxCustomer) {
-    return Math.floor(Math.random() * (maxCustomer-minCustomer)) + minCustomer + 1;
-  },
-  generateSales: function() {
-    for (var i = 1; i <= 15; i ++) {
-      var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSale);
-      this.TotalSales.push(simuSales);
-    }
-  },
-};
+  thead.appendChild(tr);
+  table.appendChild(thead);
 
-// ======================================================================
-function render() {
-  // Find the container (section with an id="locations")
-  // Loop over the locations
-  // <h3> with it's name
-  // <ul>
-  // Loop over the [hours] and make an <li> with the hour and the projection from location [cookies]
 
-  var section = document.getElementById('locations');
+  // Create table data with store location in first column then sales data in following columns.
+  for (var r = 0; r < allStores.length; r++) {
 
-  for (var i = 0 ; i < locations.length; i++) {
+    var tbody = document.createElement('tbody');
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.textContent = allStores[r].name;
 
-    var title = document.createElement('h3');
-    title.textContent = locations[i].name;
-    section.appendChild(title);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+    table.appendChild(tbody);
 
-    var list = document.createElement('ul');
+    for (var d = 0 ; d < allStores[r].TotalSales.length; d++) {
 
-    for (var p = 0 ; p < hours.length; p++) {
-      var projection = hours[p] + locations[i].TotalSales[p];
-      var li = document.createElement('li');
-      li.textContent = projection;
-      // list created element of 'ul', so we appendChild to ul first (ul > li).
-      list.appendChild(li);
-    }
+      var td2 = document.createElement('td');
+      td2.textContent = allStores[r].TotalSales[d];
 
-    var sum = 0;
-    for (var s = 0; s < locations[i].TotalSales.length; s++) {
-      sum += parseInt(locations[i].TotalSales[s]);
+      var sum = 0;
+      sum += parseInt(allStores[r].TotalSales[d]);
       total.push(sum);
+
+      var td3 = document.createElement('td');
+      td3.textContent = total[r];
+
+      tr.appendChild(td2);
+      tbody.appendChild(tr);
+      table.appendChild(tbody);
     }
-
-    var addTotal = document.createElement('li');
-    var TotalSum = sumTotal + sum;
-    addTotal.textContent = TotalSum;
-    list.appendChild(addTotal);
-
-    // Then we append what we just appended ul to section, so section.append list (section > ul > li).
-    section.appendChild(list);
   }
 }
 
@@ -163,4 +114,4 @@ function initialize () {
 }
 
 initialize();
-render();
+fillCells();
