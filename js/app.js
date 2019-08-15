@@ -4,10 +4,6 @@ var hours = ['6am ', '7am ', '8am ', '9am ', '10am ', '11am ', '12pm ', '1pm ', 
 var sumTotal = ['Total '];
 // All properties and values in each Object.
 var allStores = [];
-// All store names.
-var locations = [];
-// Sum of sales of all hours for each store.
-var total = [];
 // Sum of hourly sales for all stores.
 var endSum = [];
 
@@ -15,29 +11,65 @@ var endSum = [];
 // Constructor Object : Store
 
 
-function Store(name, minCustomer, maxCustomer, aveSale) {
+function Store(name, minCustomer, maxCustomer, aveSales) {
   this.name = name;
   this.minCustomer = minCustomer;
   this.maxCustomer = maxCustomer;
-  this.aveSale = aveSale;
+  this.aveSales = aveSales;
   this.TotalSales = [];
   this.randomCust = function(minCustomer, maxCustomer) {
     return Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer + 1;
   };
   this.generateSales = function() {
     for (var i = 1; i <= 15; i ++) {
-      var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSale);
+      var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSales);
       this.TotalSales.push(simuSales);
     }
   };
+  this.fillCells = function() {
+    // Create table data with store location in first column.
+    var sum = 0;
+
+    var tbody = document.getElementById('table-body');
+    var tr = document.createElement('tr');
+    var td = document.createElement('td');
+    td.textContent = this.name;
+
+    tr.appendChild(td);
+
+
+    // Create sales data in following columns.
+    for (var d = 0 ; d < this.TotalSales.length; d++) {
+
+      var td2 = document.createElement('td');
+      td2.textContent = this.TotalSales[d];
+
+      tr.appendChild(td2);
+    }
+
+    tbody.appendChild(tr);
+
+    // Add sum of each store to the end of the column.
+    for (var a = 0; a < this.TotalSales.length; a++) {
+      sum += parseInt(this.TotalSales[a]);
+    }
+
+    var sum1 = document.createElement('td');
+    sum1.textContent = sum;
+
+    tr.appendChild(sum1);
+    tbody.appendChild(tr);
+  };
+
   allStores.push(this);
+  this.generateSales();
 }
 
-var PikeAnd1st = new Store('1st and Pike', 23, 65, 6.3);
-var SeaTac = new Store('SeaTac Airport', 3, 24, 1.2);
-var SeaCenter = new Store('Seattle Center', 11, 387, 3.7);
-var CapitolHill = new Store('Capitol Hill', 20, 38, 2.3);
-var Alki = new Store('Alki', 2, 16, 4.6);
+new Store('1st and Pike', 23, 65, 6.3);
+new Store('SeaTac Airport', 3, 24, 1.2);
+new Store('Seattle Center', 11, 387, 3.7);
+new Store('Capitol Hill', 20, 38, 2.3);
+new Store('Alki', 2, 16, 4.6);
 
 
 // ======================================================================
@@ -67,50 +99,6 @@ function fillHead() {
 
   thead.appendChild(tr);
   table.appendChild(thead);
-}
-
-function fillCells() {
-
-  // Create table data with store location in first column.
-  for (var r = 0; r < allStores.length; r++) {
-
-    var tbody = document.getElementById('table-body');
-    var tr = document.createElement('tr');
-    var td = document.createElement('td');
-    td.textContent = allStores[r].name;
-
-    tr.appendChild(td);
-    tbody.appendChild(tr);
-
-
-    // Create sales data in following columns.
-    for (var d = 0 ; d < allStores[r].TotalSales.length; d++) {
-
-      var td2 = document.createElement('td');
-      td2.textContent = allStores[r].TotalSales[d];
-
-      var td3 = document.createElement('td');
-      td3.textContent = total[r];
-
-      tr.appendChild(td2);
-      tbody.appendChild(tr);
-    }
-
-
-    // Add sum of each store to the end of the column.
-    var sum = 0;
-    for (var a = 0; a < allStores[r].TotalSales.length; a++) {
-      sum += parseInt(allStores[r].TotalSales[a]);
-    }
-
-    total.push(sum);
-
-    var sum1 = document.createElement('td');
-    sum1.textContent = total[r];
-
-    tr.appendChild(sum1);
-    tbody.appendChild(tr);
-  }
 }
 
 function fillEndSum() {
@@ -145,23 +133,15 @@ function fillEndSum() {
 }
 
 function initialize () {
-  PikeAnd1st.generateSales();
-  SeaTac.generateSales();
-  SeaCenter.generateSales();
-  CapitolHill.generateSales();
-  Alki.generateSales();
-
-  locations.push(PikeAnd1st);
-  locations.push(SeaTac);
-  locations.push(SeaCenter);
-  locations.push(CapitolHill);
-  locations.push(Alki);
+  for (var f = 0; f < allStores.length; f++) {
+    allStores[f].fillCells();
+  }
 }
 
 initialize();
 fillHead();
-fillCells();
 fillEndSum();
+
 
 // ======================================================================
 // Create a form to take input on store locations and sales per hour for the new store.
@@ -176,26 +156,14 @@ function formData(event) {
 
   new Store(store, minCustomer, maxCustomer, aveSales);
 
-  createTable();
+  // createTable();
+  // allStores[allStores.length - 1].fillCells();
+  // fillEndSum();
   form.reset();
-  console.log('history of data: ' + allStores);
-  console.log(event);
 }
 
-function createTable() {
-  var row;
-  var tbody = document.getElementById('table-body');
-
-  for (var k = 0; k < allStores.length; k++) {
-    row = document.createElement('tr');
-    row.innerHTML = '<td>' + allStores[k].name + '</td>'
-    + '<td>' + allStores[k].TotalSales[d] + '</td>'
-  }
-
-  tbody.appendChild(row);
-}
 
 var form = document.getElementById('sales_form');
 form.addEventListener('submit', formData);
-formData();
-console.log(allStores);
+
+
