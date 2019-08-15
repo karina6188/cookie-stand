@@ -176,18 +176,23 @@ function formData(event) {
 
   new Store(store, minCustomer, maxCustomer, aveSales);
 
-  // createTable();
-  // form.reset();
-  // console.log('history of data: ' + data);
-  // console.log(event);
+  createTable();
+  form.reset();
+  console.log('history of data: ' + allStores);
+  console.log(event);
 }
 
 function createTable() {
+  var row;
+  var tbody = document.getElementById('table-body');
 
+  for (var k = 0; k < allStores.length; k++) {
+    row = document.createElement('tr');
+    row.innerHTML = '<td>' + allStores[k].name + '</td>'
+    + '<td>' + allStores[k].TotalSales[d] + '</td>'
+  }
 
-
-
-
+  tbody.appendChild(row);
 }
 
 var form = document.getElementById('sales_form');
