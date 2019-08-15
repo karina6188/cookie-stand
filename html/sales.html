@@ -17,17 +17,48 @@
       </nav>
   </header>
   
+  <form id="sales_form">
+    <fieldset>
+      <label for="store">Store name:</label>
+      <input type="text" name="store"
+      placeholder="Type in store name" minLength="3"
+      required>
+    </fieldset>
+
+    <fieldset>
+      <label for="minCustomer">Minimum customer per hour:</label>
+      <input type='text' name="minCustomer"
+      placeholder='Enter a number here' minLength='1'
+      required>
+    </fieldset>
+
+    <fieldset>
+      <label for="maxCustomer">Maximum customer per hour:</label>
+      <input type='text' name="maxCustomer"
+      placeholder='Enter a number here' minLength='1'
+      required>
+    </fieldset>
+
+    <fieldset>
+      <label for="aveSales">Average sales per customer per hour:</label>
+      <input type='text' name="aveSales"
+      placeholder='Enter a number here' minLength='1'
+      required>
+    </fieldset>
+    <input type="submit" value="Submit">
+  </form>
+
   <section id="locations">
     <h2>Sales Projections</h2>
   </section>
 
     <table id="table-locations">
       <tbody id="table-body">
-
       </tbody>
     </table>
   
   <br>
+
   <footer>
     &copy 2019 Karina
   </footer>

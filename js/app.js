@@ -1,18 +1,13 @@
 'use strict';
 
 var hours = ['6am ', '7am ', '8am ', '9am ', '10am ', '11am ', '12pm ', '1pm ', '2pm ', '3pm ', '4pm ', '5pm ', '6pm ', '7pm ', '8pm '];
-
 var sumTotal = ['Total '];
-
 // All properties and values in each Object.
 var allStores = [];
-
 // All store names.
 var locations = [];
-
 // Sum of sales of all hours for each store.
 var total = [];
-
 // Sum of hourly sales for all stores.
 var endSum = [];
 
@@ -38,13 +33,11 @@ function Store(name, minCustomer, maxCustomer, aveSale) {
   allStores.push(this);
 }
 
-
 var PikeAnd1st = new Store('1st and Pike', 23, 65, 6.3);
 var SeaTac = new Store('SeaTac Airport', 3, 24, 1.2);
 var SeaCenter = new Store('Seattle Center', 11, 387, 3.7);
 var CapitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var Alki = new Store('Alki', 2, 16, 4.6);
-
 
 
 // ======================================================================
@@ -151,7 +144,6 @@ function fillEndSum() {
   endSum.unshift(' ');
 }
 
-
 function initialize () {
   PikeAnd1st.generateSales();
   SeaTac.generateSales();
@@ -170,3 +162,35 @@ initialize();
 fillHead();
 fillCells();
 fillEndSum();
+
+// ======================================================================
+// Create a form to take input on store locations and sales per hour for the new store.
+
+
+function formData(event) {
+  event.preventDefault();
+  var store = event.target.store.value;
+  var minCustomer = event.target.minCustomer.value;
+  var maxCustomer = event.target.maxCustomer.value;
+  var aveSales = event.target.aveSales.value;
+
+  new Store(store, minCustomer, maxCustomer, aveSales);
+
+  // createTable();
+  // form.reset();
+  // console.log('history of data: ' + data);
+  // console.log(event);
+}
+
+function createTable() {
+
+
+
+
+
+}
+
+var form = document.getElementById('sales_form');
+form.addEventListener('submit', formData);
+formData();
+console.log(allStores);
