@@ -4,8 +4,7 @@ var hours = ['6am ', '7am ', '8am ', '9am ', '10am ', '11am ', '12pm ', '1pm ', 
 var sumTotal = ['Total '];
 // All properties and values in each Object.
 var allStores = [];
-// Sum of hourly sales for all stores.
-var endSum = [];
+
 
 // ======================================================================
 // Constructor Object : Store
@@ -81,7 +80,7 @@ function fillHead() {
 
   // Create elements going down from table > thead > tr > th then use for loop to put hours in table head.
 
-  var thead = document.createElement('thead');
+  var thead = document.getElementById('table-head');
   var tr = document.createElement('tr');
 
   hours.unshift(' ');
@@ -120,16 +119,11 @@ function fillEndSum() {
       sumEnd += parseInt(allStores[m].TotalSales[e]);
     }
 
-    endSum.push(sumEnd);
 
-    hourSales.textContent = endSum[e];
+    hourSales.textContent = sumEnd;
     endTr.appendChild(hourSales);
     tbody.appendChild(endTr);
   }
-
-
-  // Add sum of hourly sales for all the stores to last row of the table.
-  endSum.unshift(' ');
 }
 
 function initialize () {
@@ -138,8 +132,8 @@ function initialize () {
   }
 }
 
-initialize();
 fillHead();
+initialize();
 fillEndSum();
 
 
@@ -155,15 +149,18 @@ function formData(event) {
   var aveSales = event.target.aveSales.value;
 
   new Store(store, minCustomer, maxCustomer, aveSales);
-
-  // createTable();
-  // allStores[allStores.length - 1].fillCells();
-  // fillEndSum();
+  reprint();
   form.reset();
+}
+
+function reprint() {
+  var tbody = document.getElementById('table-body');
+  tbody.innerHTML = '';
+  initialize();
+  fillEndSum();
 }
 
 
 var form = document.getElementById('sales_form');
 form.addEventListener('submit', formData);
-
 
