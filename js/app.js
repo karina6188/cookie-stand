@@ -1,10 +1,9 @@
 'use strict';
 
 var hours = ['6am ', '7am ', '8am ', '9am ', '10am ', '11am ', '12pm ', '1pm ', '2pm ', '3pm ', '4pm ', '5pm ', '6pm ', '7pm ', '8pm '];
-var sumTotal = ['Total '];
+var sumStore = ['Total '];
 // All properties and values in each Object.
 var allStores = [];
-
 
 // ======================================================================
 // Constructor Object : Store
@@ -15,14 +14,14 @@ function Store(name, minCustomer, maxCustomer, aveSales) {
   this.minCustomer = minCustomer;
   this.maxCustomer = maxCustomer;
   this.aveSales = aveSales;
-  this.TotalSales = [];
-  this.randomCust = function(minCustomer, maxCustomer) {
+  this.totalSales = [];
+  this.randomCust = function() {
     return Math.floor(Math.random() * (this.maxCustomer - this.minCustomer)) + this.minCustomer + 1;
   };
   this.generateSales = function() {
     for (var i = 1; i <= 15; i ++) {
-      var simuSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSales);
-      this.TotalSales.push(simuSales);
+      var simulatedSales = Math.round(this.randomCust(this.minCustomer, this.maxCustomer) * this.aveSales);
+      this.totalSales.push(simulatedSales);
     }
   };
   this.fillCells = function() {
@@ -38,10 +37,10 @@ function Store(name, minCustomer, maxCustomer, aveSales) {
 
 
     // Create sales data in following columns.
-    for (var d = 0 ; d < this.TotalSales.length; d++) {
+    for (var i = 0 ; i < this.totalSales.length; i++) {
 
       var td2 = document.createElement('td');
-      td2.textContent = this.TotalSales[d];
+      td2.textContent = this.totalSales[i];
 
       tr.appendChild(td2);
     }
@@ -49,8 +48,8 @@ function Store(name, minCustomer, maxCustomer, aveSales) {
     tbody.appendChild(tr);
 
     // Add sum of each store to the end of the column.
-    for (var a = 0; a < this.TotalSales.length; a++) {
-      sum += parseInt(this.TotalSales[a]);
+    for (var x = 0; x < this.totalSales.length; x++) {
+      sum += parseInt(this.totalSales[x]);
     }
 
     var sum1 = document.createElement('td');
@@ -66,7 +65,7 @@ function Store(name, minCustomer, maxCustomer, aveSales) {
 
 new Store('1st and Pike', 23, 65, 6.3);
 new Store('SeaTac Airport', 3, 24, 1.2);
-new Store('Seattle Center', 11, 387, 3.7);
+new Store('Seattle Center', 11, 38, 3.7);
 new Store('Capitol Hill', 20, 38, 2.3);
 new Store('Alki', 2, 16, 4.6);
 
@@ -83,16 +82,16 @@ function fillHead() {
   var thead = document.getElementById('table-head');
   var tr = document.createElement('tr');
 
-  hours.unshift(' ');
+  hours.unshift('Locations / Hours');
 
-  for (var h = 0 ; h < hours.length; h++) {
+  for (var i = 0 ; i < hours.length; i++) {
     var th = document.createElement('th');
-    th.textContent = hours[h];
+    th.textContent = hours[i];
     tr.appendChild(th);
   }
 
   var th2 = document.createElement('th');
-  th2.textContent = sumTotal;
+  th2.textContent = sumStore;
 
   tr.appendChild(th2);
 
@@ -106,19 +105,18 @@ function fillEndSum() {
   var tbody = document.getElementById('table-body');
   var endTr = document.createElement('tr');
 
-  var emptySpace = document.createElement('td');
-  emptySpace.textContent = 'Total Sales per Hour';
-  endTr.appendChild(emptySpace);
+  var lastRow = document.createElement('td');
+  lastRow.textContent = 'Total Sales per Hour';
+  endTr.appendChild(lastRow);
   tbody.appendChild(endTr);
 
-  for (var e = 0; e < hours.length-1; e++) {
+  for (var i = 0; i < hours.length-1; i++) {
     var hourSales = document.createElement('td');
 
     var sumEnd = 0;
-    for (var m = 0; m < allStores.length; m++) {
-      sumEnd += parseInt(allStores[m].TotalSales[e]);
+    for (var x = 0; x < allStores.length; x++) {
+      sumEnd += parseInt(allStores[x].totalSales[i]);
     }
-
 
     hourSales.textContent = sumEnd;
     endTr.appendChild(hourSales);
@@ -127,8 +125,8 @@ function fillEndSum() {
 }
 
 function initialize () {
-  for (var f = 0; f < allStores.length; f++) {
-    allStores[f].fillCells();
+  for (var i = 0; i < allStores.length; i++) {
+    allStores[i].fillCells();
   }
 }
 

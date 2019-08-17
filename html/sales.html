@@ -3,7 +3,9 @@
 
   <head>
     <title>Sales Projections</title>
+    <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Great+Vibes|Sacramento|Source+Sans+Pro|Tangerine&display=swap" rel="stylesheet">
   </head>
 
 <body>
@@ -17,6 +19,21 @@
       </nav>
   </header>
   
+  <section id="locations">
+    <h2>Sales Projections</h2>
+  </section>
+
+    <table id="table-locations">
+      <thead id="table-head">
+      </thead>
+      <tbody id="table-body">
+      </tbody>
+    </table>
+
+    <br>
+
+    <h2>Add another store</h2>
+
   <form id="sales_form">
     <fieldset>
       <label for="store">Store name:</label>
@@ -45,19 +62,12 @@
       placeholder='Enter a number here' minLength='1'
       required>
     </fieldset>
+
+    <br>
+    <br>
     <button id="submit_btn" type="submit">Add Store</button>
   </form>
 
-  <section id="locations">
-    <h2>Sales Projections</h2>
-  </section>
-
-    <table id="table-locations">
-      <thead id="table-head">
-      </thead>
-      <tbody id="table-body">
-      </tbody>
-    </table>
   
   <br>
 

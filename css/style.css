@@ -1,13 +1,30 @@
-body > header > h1 {
-  background-color: rgb(214, 116, 149);
-  padding: 20px;
-  color:  black;
+body {
+  margin: 40px 40px;
 }
+
+h1 {
+  color: black;
+  font-family: 'Great Vibes', cursive;
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0px 0px 30px 0px;
+  text-shadow: 2px 0.8px rgb(241, 155, 184);
+}
+
+h2 {
+  color: black;
+  font-family: 'Tangerine', cursive;
+  font-weight: bold;
+  font-size: 2em;
+  margin: 30px 0px 20px 0px;
+}
+
 
 body > header > nav > ul > li {
   box-align: left;
   background-color: rgb(75, 8, 8);
   color: white;
+  font-family: 'Source Sans Pro', sans-serif;
   display: inline-block;
   list-style-type: none;
   margin: auto;
@@ -30,9 +47,19 @@ thead {
 }
 
 th, td {
-padding: 1.5px 5px;
+  padding: 1.5px 5px;
+  text-align: left;
 }
 
 tbody {
   background-color: #f5f5f5;
+}
+
+form {
+  width: 500px;
+}
+fieldset {
+  width: 480px;
+  display: inline-block;
+
 }
