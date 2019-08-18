@@ -2,6 +2,15 @@
 } */
 
 /* Header nav bar */
+header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  margin: 0px;
+  z-index: 10;
+}
+
 nav > ul > li {
   background-color: rgb(102, 15, 15);
   border-radius: 4px;
@@ -36,11 +45,18 @@ nav > ul > li {
 .title {
   grid-column: 2 / span 19;
   grid-row: 1;
+  position: fixed;
+  margin-left: 190px;
+  min-width: 500px;
 }
 
 .nav-bar {
   grid-column: 1 / span 20;
   grid-row: 2 / span 2;
+}
+
+.pageName {
+  position: fixed;
 }
 
 #logo {
@@ -50,7 +66,7 @@ nav > ul > li {
 
 /* Main section starts */
 main {
-  margin: 0px 40px;
+  margin: 200px 40px;
 }
 
 .welcome {
@@ -66,6 +82,7 @@ main {
   grid-gap: 10px;
   grid-template-columns: auto auto;
   padding: 10px;
+  position: absolute;
 }
 
 .locations {
@@ -85,6 +102,7 @@ main {
   grid-template-columns: auto auto;
   max-width: 800px;
   padding: 10px;
+  margin-top: 100px;
 }
 
 .store1 {
@@ -153,7 +171,7 @@ span {
   font-family: 'Source Sans Pro', sans-serif;
   padding: 5px 10px;
   box-sizing: border-box;
-  transition: 1s all;
+  transition: 0.5s all;
 }
 
 .span1 {
@@ -273,7 +291,10 @@ footer {
   color: white;
   font-family: 'Source Sans Pro', sans-serif;
   margin: 40px 0px 0px 0px;
-  padding: 20px 20px;
+  padding: 10px 20px;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
 }
 
 .footer {
