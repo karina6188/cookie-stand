@@ -1,14 +1,86 @@
-body {
-  margin: 40px 40px;
+/* *{outline: dotted 1px red;
+} */
+
+.top-header {
+  min-width: 800px;
+  grid-template-columns: auto;
+  padding: 10px;
+  background-image: -webkit-linear-gradient(#fae8ed, #e59daf);
+  background-color: rgb(243, 217, 225);
 }
 
+.imgs {
+  height: 90px;
+  display: inline-block;
+}
+.welcome {
+  text-align: center;
+  font-size: 1.5em;
+  font-family: 'Source Sans Pro', sans-serif;
+  color: rgb(102, 15, 15);
+}
+
+.footer {
+  display: inline-block;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin-right: 30px;
+}
+
+.pageHeader {
+  display: grid;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.logo {
+  grid-column: 1 / span 1;
+  grid-row: 1;
+}
+
+.title {
+  grid-column: 2 / span 19;
+  grid-row: 1;
+}
+
+.nav-bar {
+  grid-column: 1 / span 20;
+  grid-row: 2 / span 2;
+}
+
+#logo {
+  width: 140px;
+  padding: 15px;
+}
+
+.location-column {
+  grid-template-columns: auto auto;
+  display: grid;
+  grid-gap: 10px;
+  padding: 10px;
+}
+
+.store1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.store2 {
+  grid-column: 2;
+  grid-row: 1; 
+}
+main {
+  margin: 0px 40px;
+
+}
 h1 {
   color: black;
+  display: inline-block;
   font-family: 'Great Vibes', cursive;
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: bold;
-  margin: 0px 0px 30px 0px;
-  text-shadow: 2px 0.8px rgb(241, 155, 184);
+  margin: 30px 0px 30px 0px;
+  min-width: 100px;
+  text-shadow: 2px 0.8px rgb(192, 117, 142);
 }
 
 h2 {
@@ -16,50 +88,78 @@ h2 {
   font-family: 'Tangerine', cursive;
   font-weight: bold;
   font-size: 2em;
-  margin: 30px 0px 20px 0px;
+  margin: 40px 0px 20px 0px;
 }
 
+h3 {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  margin: 20px 0px 20px 0px;
+}
 
-body > header > nav > ul > li {
+nav > ul > li {
   box-align: left;
-  background-color: rgb(75, 8, 8);
+  background-color: rgb(102, 15, 15);
   color: white;
   font-family: 'Source Sans Pro', sans-serif;
   display: inline-block;
   list-style-type: none;
-  margin: auto;
-  padding: 10px;
+  margin: 0px 10px 0px 0px;
+  padding: 10px 13px;
+  border-radius: 4px;
 }
 
-body > header > nav > ul > li > a {
+a {
   color: white;
   text-decoration: none;
   font-size: 16px;
 }
 
-body > section > table {
+table {
+  font-family: 'Source Sans Pro', sans-serif;
+  min-width: 1000px;
   width: auto;
+  margin: 0px 0px 0px 0px;
 }
 
 thead {
-  background-color: rgb(214, 116, 149)
-
-}
-
-th, td {
-  padding: 1.5px 5px;
-  text-align: left;
+  background-color: rgb(206, 186, 193);
+  font-weight: bold;
 }
 
 tbody {
   background-color: #f5f5f5;
 }
 
+th, td {
+  padding: 3.5px 5px;
+  text-align: left;
+  border: 1px solid rgb(212, 211, 211);
+}
+
 form {
   width: 500px;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0px 0px 0px 0px
 }
+
 fieldset {
   width: 480px;
   display: inline-block;
-
 }
+
+p {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 5px 30px 0px 0px;
+  padding: 2px 0px;
+}
+
+footer {
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 20px 0px 0px 0px;
+  padding: 20px 20px;
+  background-color: rgb(41, 41, 41)
+}
+
+facilisis gravida. Consequat mauris nunc congue nisi vitae suscipit. Arcu risus quis varius quam quisque id diam. Turpis nunc eget lorem dolor. Nunc sed id semper risus in. Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh. 

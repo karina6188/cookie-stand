@@ -10,15 +10,34 @@
 
 <body>
   <header>
-    <h1 id="pageName">Pat's Salmon Cookies</h1>
-    <nav>
-        <ul>
-          <li><a href="/html/index.html">Home</a></li>
-          <li><a href="/html/sales.html">Sales Projections</a></li>
-        </ul>
-      </nav>
+    <div class="top-header">
+    <section class="pageHeader">
+      <section class="logo">
+        <img src="/img/salmon.png" id="logo">
+      </section>
+
+      <section class="title">
+        <h1 id="pageName">Pat's Salmon Cookies</h1>
+      </section>
+
+      <section class="nav-bar">     
+        <nav>
+          <ul>
+            <li><a href="/html/index.html">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Menu</a></li>
+            <li><a href="">Online Shop</a></li>
+            <li><a href="">Events</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="/html/sales.html">Sales Projections</a></li>
+          </ul>
+        </nav>
+      </section>
+    </section>
+    </div>
   </header>
   
+  <main>
   <section id="locations">
     <h2>Sales Projections</h2>
   </section>
@@ -32,7 +51,7 @@
 
     <br>
 
-    <h2>Add another store</h2>
+    <h2>Add Another Store</h2>
 
   <form id="sales_form">
     <fieldset>
@@ -70,9 +89,12 @@
 
   
   <br>
+  </main>
 
   <footer>
-    &copy 2019 Karina
+    <p class="footer">&copy 2019 Karina</p>
+    <p class="footer">Security and Privacy Policy</p>
+    <p class="footer">Contact Us</p>
   </footer>
 
   <script src="../js/app.js"></script>
