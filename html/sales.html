@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sales Projections</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Great+Vibes|Sacramento|Source+Sans+Pro|Tangerine&display=swap" rel="stylesheet">
+  </head>
+
+<body>
+  <header>
+    <div class="top-header">
+    <section class="pageHeader">
+      <section class="logo">
+        <img src="/img/salmon.png" id="logo">
+      </section>
+
+      <section class="title">
+        <h1 id="pageName">Pat's Salmon Cookies</h1>
+      </section>
+
+      <section class="nav-bar">     
+        <nav>
+          <ul>
+            <li><a href="/html/index.html">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Menu</a></li>
+            <li><a href="">Online Shop</a></li>
+            <li><a href="">Events</a></li>
+            <li><a href="">Blog</a></li>
+            <li><a href="/html/sales.html">Sales Projections</a></li>
+          </ul>
+        </nav>
+      </section>
+    </section>
+    </div>
+  </header>
+  
+  <main>
+  <section id="locations">
+    <h2>Sales Projections</h2>
+  </section>
+
+    <table id="table-locations">
+      <thead id="table-head">
+      </thead>
+      <tbody id="table-body">
+      </tbody>
+    </table>
+
+    <br>
+
+    <h2>Add Another Store</h2>
+
+  <form id="sales_form">
+    <fieldset>
+      <label for="store">Store name:</label>
+      <input type="text" name="store"
+      placeholder="Type in store name" minLength="3"
+      required>
+    </fieldset>
+
+    <fieldset>
+      <label for="minCustomer">Minimum customer per hour:</label>
+      <input type='text' name="minCustomer"
+      placeholder='Enter a number here' minLength='1'
+      required>
+    </fieldset>
+
+    <fieldset>
+      <label for="maxCustomer">Maximum customer per hour:</label>
+      <input type='text' name="maxCustomer"
+      placeholder='Enter a number here' minLength='1'
+      required>
+    </fieldset>
+
+    <fieldset>
+      <label for="aveSales">Average sales per customer per hour:</label>
+      <input type='text' name="aveSales"
+      placeholder='Enter a number here' minLength='1'
+      required>
+    </fieldset>
+
+    <br>
+    <br>
+    <button id="submit_btn" type="submit">Add Store</button>
+  </form>
+
+  
+  <br>
+  </main>
+
+  <footer>
+    <p class="footer">&copy 2019 Karina</p>
+    <p class="footer">Security and Privacy Policy</p>
+    <p class="footer">Contact Us</p>
+  </footer>
+
+  <script src="../js/app.js"></script>
+</body>
+
+</html>
